@@ -6,9 +6,25 @@
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(.playback,mode: .default)
+        }catch{
+            fatalError("カテゴリ処理失敗")
+        }
+        do{
+            try session.setActive(true)
+        }catch{
+            fatalError("session有効か失敗")
+        }
+        return true
+    }
 
 
 
